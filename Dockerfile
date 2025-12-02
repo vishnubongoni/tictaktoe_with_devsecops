@@ -8,6 +8,7 @@ RUN npm run build
 
 # Production stage
 FROM nginx:alpine
+RUN apk update && apk upgrade --no-cache && \ apk add --no-cache libpng=1.6.51-r0 || true
 COPY --from=build /app/dist /usr/share/nginx/html
 # Add nginx configuration if needed
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
